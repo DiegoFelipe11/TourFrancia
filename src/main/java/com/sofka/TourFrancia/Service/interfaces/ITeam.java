@@ -3,10 +3,13 @@ package com.sofka.TourFrancia.Service.interfaces;
 import com.sofka.TourFrancia.Domain.CyclingTeam;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ITeam {
 
     List<CyclingTeam> getListTeam ();
+
+    Optional<CyclingTeam> getListTeamId(Long id);
 
     CyclingTeam saveTeam (CyclingTeam team);
 

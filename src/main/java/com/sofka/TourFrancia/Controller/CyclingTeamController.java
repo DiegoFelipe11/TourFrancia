@@ -31,6 +31,25 @@ public class CyclingTeamController {
         return new ResponseEntity<>(response, httpStatus);
     }
 
+    @GetMapping(path = "team/list/{id}")
+    public ResponseEntity<Response> listOfEquipmentId(@PathVariable("id") Long id){
+        response.restart();
+        try {
+
+            response.data=teamService.getListTeamId(id);
+            if(response.data==null){
+                response.message="No existe un equipo con este id";
+                httpStatus=HttpStatus.NOT_FOUND;
+            }else{
+                response.message="Equipo";
+                httpStatus=HttpStatus.OK;
+            }
+        }catch (Exception ex){
+            getErrorMessageInternal(ex);
+        }
+        return  new ResponseEntity<>(response,httpStatus);
+    }
+
     @PostMapping(path = "team")
     public ResponseEntity<Response> newEquipment(@RequestBody CyclingTeam team) {
         response.restart();

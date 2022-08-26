@@ -34,12 +34,13 @@ public class CyclistController {
     @PostMapping(path = "cyclist")
     public ResponseEntity<Response> newCyclists(@RequestBody Cyclist cyclist) {
         response.restart();
+        boolean flag = cyclistService.equipmentSize(cyclist.getCyclingTeam().getId());
         try {
-            if (cyclist.getCompetitorNumber().length() <= 3) {
+            if (cyclist.getCompetitorNumber().length() <= 3 && flag) {
                 response.data = cyclistService.saveCyclist(cyclist);
                 httpStatus = HttpStatus.CREATED;
             } else {
-                response.message = "El codigo del ciclista debe contener 3 caracteres";
+                response.message = "El codigo es incorrecto o este equipo ya cumplio con el numero de ciclistas";
                 httpStatus = HttpStatus.NOT_FOUND;
             }
         } catch (Exception ex) {

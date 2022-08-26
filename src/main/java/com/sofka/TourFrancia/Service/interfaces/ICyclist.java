@@ -15,4 +15,6 @@ public interface ICyclist {
 
     List<Cyclist> searchForNationality(String nationality );
 
+    boolean equipmentSize(Long id);
+
 }
