@@ -15,5 +15,3 @@ CRUD para la administracion de equipos del tour de francia
 # Cobertura De Pruebas Unitarias
 ![image](https://user-images.githubusercontent.com/111761884/187215622-d6e5464e-802d-42db-a9c4-ea1bddf12e3f.png)
 
-# Estrucutar del archivo postman
-https://www.getpostman.com/collections/a81e6fd83bd4b819b57a
