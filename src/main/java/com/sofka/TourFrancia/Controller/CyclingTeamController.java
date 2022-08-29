@@ -24,7 +24,6 @@ public class CyclingTeamController {
         try {
             response.data = teamService.getListTeam();
             httpStatus = HttpStatus.OK;
-            log.info("entro");
         } catch (Exception ex) {
             getErrorMessageInternal(ex);
         }
@@ -32,29 +31,28 @@ public class CyclingTeamController {
     }
 
     @GetMapping(path = "team/list/{id}")
-    public ResponseEntity<Response> listOfEquipmentId(@PathVariable("id") Long id){
+    public ResponseEntity<Response> listOfEquipmentId(@PathVariable("id") Long id) {
         response.restart();
         try {
-
-            response.data=teamService.getListTeamId(id);
-            if(response.data==null){
-                response.message="No existe un equipo con este id";
-                httpStatus=HttpStatus.NOT_FOUND;
-            }else{
-                response.message="Equipo";
-                httpStatus=HttpStatus.OK;
+            response.data = teamService.getListTeamId(id);
+            if (response.data == null) {
+                response.message = "No existe un equipo con este id";
+                httpStatus = HttpStatus.NOT_FOUND;
+            } else {
+                response.message = "Equipo";
+                httpStatus = HttpStatus.OK;
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
             getErrorMessageInternal(ex);
         }
-        return  new ResponseEntity<>(response,httpStatus);
+        return new ResponseEntity<>(response, httpStatus);
     }
 
     @PostMapping(path = "team")
     public ResponseEntity<Response> newEquipment(@RequestBody CyclingTeam team) {
         response.restart();
         try {
-            if (team.getTeamCode().length() <= 3) {
+            if (team.getTeamCode().length() == 3) {
                 response.data = teamService.saveTeam(team);
                 httpStatus = HttpStatus.CREATED;
             } else {
@@ -108,17 +106,17 @@ public class CyclingTeamController {
         response.restart();
         try {
             response.data = teamService.cyclingTeam(code);
-            if (response.data==null){
-                response.message="No se encuentra equipos con codigo";
-                httpStatus=HttpStatus.NOT_FOUND;
-            }else {
-                response.message="Lista de equipos con el codigo "+code;
-                httpStatus=HttpStatus.OK;
+            if (response.data == null ) {
+                response.message = "No se encuentra equipos con el codigo ";
+                httpStatus = HttpStatus.NOT_FOUND;
+            } else {
+                response.message = "Lista de equipos";
+                httpStatus = HttpStatus.OK;
             }
         } catch (Exception ex) {
             getErrorMessageInternal(ex);
         }
-        return new ResponseEntity<>(response,httpStatus);
+        return new ResponseEntity<>(response, httpStatus);
     }
 
     @GetMapping("team/code/nationality/{code}")
@@ -126,17 +124,17 @@ public class CyclingTeamController {
         response.restart();
         try {
             response.data = teamService.teamNationality(code);
-            if (response.data==null){
-                response.message="No se encuentra equipos con la nacionalidad "+code;
-                httpStatus=HttpStatus.NOT_FOUND;
-            }else {
-                response.message="Lista de equipos con la nacionalidad "+code;
-                httpStatus=HttpStatus.OK;
+            if (response.data == null) {
+                response.message = "No se encuentra equipos con la nacionalidad " + code;
+                httpStatus = HttpStatus.NOT_FOUND;
+            } else {
+                response.message = "Lista de equipos";
+                httpStatus = HttpStatus.OK;
             }
         } catch (Exception ex) {
             getErrorMessageInternal(ex);
         }
-        return new ResponseEntity<>(response,httpStatus);
+        return new ResponseEntity<>(response, httpStatus);
     }
 
     public void getErrorMessageInternal(Exception exception) {

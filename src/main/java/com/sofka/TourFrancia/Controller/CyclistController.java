@@ -36,7 +36,7 @@ public class CyclistController {
         response.restart();
         boolean flag = cyclistService.equipmentSize(cyclist.getCyclingTeam().getId());
         try {
-            if (cyclist.getCompetitorNumber().length() <= 3 && flag) {
+            if (cyclist.getCompetitorNumber().length() == 3 && flag) {
                 response.data = cyclistService.saveCyclist(cyclist);
                 httpStatus = HttpStatus.CREATED;
             } else {

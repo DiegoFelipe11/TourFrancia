@@ -16,10 +16,10 @@ public class Country {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "names" , length = 50 , nullable = false)
+    @Column(name = "names", length = 50, nullable = false)
     private String name;
 
-    @Column(name = "codes" , length = 10 , nullable = false , unique = true)
+    @Column(name = "codes", length = 10, nullable = false, unique = true)
     private String code;
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
@@ -30,3 +30,4 @@ public class Country {
     @JsonIgnore
     private List<CyclingTeam> cyclingTeams;
 }
+
